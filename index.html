@@ -2,27 +2,28 @@
 <html>
 <head>
     <meta charset='utf8'>
-    <title>Gun Mayhem Ruffle</title>
+    <title>Gun Mayhem 2</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; }
+        #ruffle { width: 100vw; height: 100vh; }
+    </style>
 </head>
 <body>
     <div id='ruffle'></div>
-    <!-- Load Ruffle from reliable CDN -->
-    <script src='https://unpkg.com/@ruffle-rs/ruffle'></script>
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            var swfobject = {};
-            swfobject.embedSWF = function(url, cont, width, height){
-                var ruffle = window.RufflePlayer.newest(),
-                    player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
-                        width: width,
-                        height: height,
-                        style: 'width: ' + width + 'px; height: ' + height + 'px',
-                    });
-                player.load({ url: url });
-            }
 
-            // USE RAW URL HERE
-            swfobject.embedSWF('https://github.com/barbecuechickenroast/gun-mayhem/raw/refs/heads/master/gun-mayhem-2.swf', 'ruffle', '100%', '100%');
+    <script src='https://unpkg.com/@ruffle-rs/ruffle'></script>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("ruffle");
+            container.appendChild(player);
+
+            player.load({
+                url: "gun-mayhem-2.swf" 
+            });
         });
     </script>
 </body>
